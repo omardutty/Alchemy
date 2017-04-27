@@ -12,6 +12,10 @@ std::vector<std::string> elemento;
 //Mapa de los elementos
 std::unordered_map<std::string, std::string, std::string>mapa;
 
+void Combinacion() {
+
+}
+
 //Le da los elementos basicos al player
 void AddBasics() {
 	elemento.push_back ("Aire");
@@ -89,7 +93,7 @@ void main() {
 	
 	//Uso el getline para cojer desde el archivo cada linia
 	while (getline(archivo, line)){
-		//Separacion va desde el caracter 0 al =
+		//Separacion va desde el caracter 0 al =          primer caracter = 0
 		separacion = line.find('=', 0);
 		combinacion = line.substr(0, separacion);
 		keydelelemento = line.substr(separacion + 3 );
@@ -97,8 +101,7 @@ void main() {
 		mapa.insert({ keydelelemento, combinacion });
 	}
 	archivo.close();
-
-
+	
 	int posicion;
 	std::string player;
 	std::cin >> player;
