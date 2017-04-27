@@ -9,14 +9,15 @@
 
 //Vector de strings global
 std::vector<std::string> elemento;
+//Mapa de los elementos
 std::unordered_map<std::string, std::string, std::string>mapa;
 
 //Le da los elementos basicos al player
 void AddBasics() {
-	elemento.push_back = "Aire";
-	elemento.push_back = "Fuego";
-	elemento.push_back = "Tierra";
-	elemento.push_back = "Agua";
+	elemento.push_back ("Aire");
+	elemento.push_back ("Fuego");
+	elemento.push_back ("Tierra");
+	elemento.push_back ("Agua");
 }
 
 //Funcion que copia un elemento en concreto
@@ -61,21 +62,42 @@ void Help() {
 }
 
 
+
 void main() {
 
-	std::ifstream archivo;
-	archivo.open("doc.txt");
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << "       FULLENTI ALCHEMIST      " << std::endl;
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << " " << std::endl;
+	std::cout << "- Enter two numbers of your element list to combine them" << std::endl;
+	std::cout << "- Enter the word 'add' and the number of a element to add a new instance of that element" << std::endl;
+	std::cout << "- Enter 'addbasics' add new instances of the 4 basics elements" << std::endl;
+	std::cout << "- Enter 'delete' and the number of a element to erase it" << std::endl;
+	std::cout << "- Enter 'info' and the number of the element and you will get information of that element" << std::endl;
+	std::cout << "- Enter 'sort' to sort alphabetical orders of the elements" << std::endl;
+	std::cout << "- Enter 'clean' to delete all the instances of repeated elements" << std::endl;
+	std::cout << "- Enter 'help' to show a tutorial" << std::endl;
+	std::cout << " " << std::endl;
+
+	//std::cout << "Your current score :" << puntuacion << std::endl;
+
+	std::ifstream archivo ("elements.dat");
 	std::string line;
-	std::string key("=");
-	std::size_t punto = str.find(key);
-	std::string p1, p2, p3;
-	std::size_t symbol = str.find(key, 0);
-
-	while (getline(archivo, line)) {
-		p1 = str.substr(1, line - (line - symbol));
-
-		mapa.insert(p1, p2, p3);
+	std::string keydelelemento;
+	std::string combinacion;
+	int separacion;
+	
+	//Uso el getline para cojer desde el archivo cada linia
+	while (getline(archivo, line)){
+		//Separacion va desde el caracter 0 al =
+		separacion = line.find('=', 0);
+		combinacion = line.substr(0, separacion);
+		keydelelemento = line.substr(separacion + 3 );
+		//Insertamos en el mapa la lectura del fichero
+		mapa.insert({ keydelelemento, combinacion });
 	}
+	archivo.close();
+
 
 	int posicion;
 	std::string player;
