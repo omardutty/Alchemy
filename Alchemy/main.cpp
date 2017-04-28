@@ -10,7 +10,8 @@
 //Vector de strings global
 std::vector<std::string> elemento;
 //Mapa de los elementos
-std::unordered_map<std::string, std::string>mapa;
+std::unordered_map<std::string, std::string> mapa;
+
 
 void Combinacion() {
 
@@ -51,8 +52,7 @@ void Sort() {
 
 //Funcion del clean
 void Clean() {
-
-
+	elemento.erase(std::unique(elemento.begin(), elemento.end()), elemento.end());
 }
 
 //Funcion de Help para el player
@@ -68,7 +68,7 @@ void Help() {
 
 
 void main() {
-	/*
+	
 	std::cout << "-------------------------------" << std::endl;
 	std::cout << "       FULLENTI ALCHEMIST      " << std::endl;
 	std::cout << "-------------------------------" << std::endl;
@@ -81,9 +81,10 @@ void main() {
 	std::cout << "- Enter 'sort' to sort alphabetical orders of the elements" << std::endl;
 	std::cout << "- Enter 'clean' to delete all the instances of repeated elements" << std::endl;
 	std::cout << "- Enter 'help' to show a tutorial" << std::endl;
-	std::cout << " " << std::endl;*/
+	std::cout << " " << std::endl;
 
 	//std::cout << "Your current score :" << puntuacion << std::endl;
+	
 
 	std::ifstream archivo ("elements.dat");
 	std::string line;
@@ -101,12 +102,13 @@ void main() {
 		mapa.insert({ keydelelemento, combinacion });
 	}
 	archivo.close();
-
-	for (auto it = mapa.begin(); it != mapa.end(); it++){
-		std::cout << " " << it->first << " " << it->second << std::endl;
-	}
 	
-	/*int posicion;
+	/* //For que pemite imprimir el documento de elementos
+	for (auto it = mapa.begin(); it != mapa.end(); ++it){
+	std::cout << " " << it->first << " : " << it->second << std::endl;
+	}*/
+	
+	int posicion;
 	std::string player;
 	std::cin >> player;
 	//std::cin >> posicion; Les complexes es millor fer en un gran if amb substrings que separen entre el numero y la funcion
@@ -121,8 +123,12 @@ void main() {
 	else if (player == "sort") {
 		Sort();
 	}
+	else if (player == "clean") {
+		Clean();
+	}
 
 
+	/*
 	//if megalitico
 	else if (player == "add") {
 		Add(posicion);
@@ -133,4 +139,10 @@ void main() {
 	else if (player == "info") {
 		Info(posicion);
 	}*/
+
+
+	std::cout << "You have those elements :" << std::endl;
+	for (std::vector<std::string>::iterator it = elemento.begin(); it != elemento.end(); ++it) {
+		std::cout << *it << std::endl;
+	}
 }
