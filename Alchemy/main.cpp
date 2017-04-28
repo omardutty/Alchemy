@@ -107,42 +107,47 @@ void main() {
 	for (auto it = mapa.begin(); it != mapa.end(); ++it){
 	std::cout << " " << it->first << " : " << it->second << std::endl;
 	}*/
-	
+
 	int posicion;
 	std::string player;
 	std::cin >> player;
 	//std::cin >> posicion; Les complexes es millor fer en un gran if amb substrings que separen entre el numero y la funcion
+	
+	while (player != "endgame")
+	{
 
+		if (player == "addbasics") {
+			AddBasics();
+		}
+		else if (player == "help") {
+			Help();
+		}
+		else if (player == "sort") {
+			Sort();
+		}
+		else if (player == "clean") {
+			Clean();
+		}
+		else if (player != "addbasics" && player != "help" && player != "sort" && player != "clean" && player != "endgame"){
+			std::cout << "I don't understand that buddy! Type help for help!"<<std::endl;
+		}
 
-	if (player == "addbasics") {
-		AddBasics();
-	}
-	else if (player == "help") {
-		Help();
-	}
-	else if (player == "sort") {
-		Sort();
-	}
-	else if (player == "clean") {
-		Clean();
-	}
-
-
-	/*
-	//if megalitico
-	else if (player == "add") {
+		/*
+		//if megalitico
+		else if (player == "add") {
 		Add(posicion);
-	}
-	else if (player == "delete") {
+		}
+		else if (player == "delete") {
 		Delete(posicion);
-	}
-	else if (player == "info") {
+		}
+		else if (player == "info") {
 		Info(posicion);
-	}*/
+		}*/
 
-
-	std::cout << "You have those elements :" << std::endl;
-	for (std::vector<std::string>::iterator it = elemento.begin(); it != elemento.end(); ++it) {
-		std::cout << *it << std::endl;
+		std::cout << "You have those elements :" << std::endl;
+		for (std::vector<std::string>::iterator it = elemento.begin(); it != elemento.end(); ++it) {
+			std::cout <<"  "<<*it << std::endl;
+		}
+		std::cin >> player;
 	}
 }
