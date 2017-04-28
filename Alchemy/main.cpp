@@ -39,8 +39,8 @@ void lecturadelfichero() {
 	}*/
 }
 
-
-/*std::string Combination(std::string comb1, std::string comb2) {
+/*
+std::string Combination(std::string comb1, std::string comb2) {
 	std::pair<std::string, std::string> combinacion = std::make_pair(comb1, comb2);
 	if ()
 	{
@@ -50,8 +50,8 @@ void lecturadelfichero() {
 	{
 		//return std::cout << "No existe la combinacion" << std::endl;
 	}
-}
-*/
+}*/
+
 
 //Le da los elementos basicos al player
 void AddBasics() {
@@ -145,6 +145,7 @@ void main() {
 
 	std::string player;
 	std::cin >> player;
+	std::cin.clear();
 
 	//std::cin >> posicion; //Les complexes es millor fer en un gran if amb substrings que separen entre el numero y la funcion
 	/*std::pair<int, int>combination;
