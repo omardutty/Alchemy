@@ -68,7 +68,7 @@ void Help() {
 
 
 void main() {
-
+	/*
 	std::cout << "-------------------------------" << std::endl;
 	std::cout << "       FULLENTI ALCHEMIST      " << std::endl;
 	std::cout << "-------------------------------" << std::endl;
@@ -81,7 +81,7 @@ void main() {
 	std::cout << "- Enter 'sort' to sort alphabetical orders of the elements" << std::endl;
 	std::cout << "- Enter 'clean' to delete all the instances of repeated elements" << std::endl;
 	std::cout << "- Enter 'help' to show a tutorial" << std::endl;
-	std::cout << " " << std::endl;
+	std::cout << " " << std::endl;*/
 
 	//std::cout << "Your current score :" << puntuacion << std::endl;
 
@@ -94,15 +94,19 @@ void main() {
 	//Uso el getline para cojer desde el archivo cada linia
 	while (getline(archivo, line)){
 		//Separacion va desde el caracter 0 al =          primer caracter = 0
-		separacion = line.find('=', 0);
+		separacion = line.find(" = ", 0);
 		combinacion = line.substr(0, separacion);
 		keydelelemento = line.substr(separacion + 3 );
 		//Insertamos en el mapa la lectura del fichero
 		mapa.insert({ keydelelemento, combinacion });
 	}
 	archivo.close();
+
+	for (auto it = mapa.begin(); it != mapa.end(); it++){
+		std::cout << " " << it->first << " " << it->second << std::endl;
+	}
 	
-	int posicion;
+	/*int posicion;
 	std::string player;
 	std::cin >> player;
 	//std::cin >> posicion; Les complexes es millor fer en un gran if amb substrings que separen entre el numero y la funcion
@@ -128,5 +132,5 @@ void main() {
 	}
 	else if (player == "info") {
 		Info(posicion);
-	}
+	}*/
 }
