@@ -40,24 +40,25 @@ void lecturadelfichero() {
 }
 
 
-std::string Combination(std::string comb1, std::string comb2) {
+/*std::string Combination(std::string comb1, std::string comb2) {
 	std::pair<std::string, std::string> combinacion = std::make_pair(comb1, comb2);
-	if (true)
+	if ()
 	{
 		
 	}
 	else
 	{
-		//return std::cout << " No existe la combinacion " << std::endl;
+		//return std::cout << "No existe la combinacion" << std::endl;
 	}
 }
+*/
 
 //Le da los elementos basicos al player
 void AddBasics() {
-	elemento.push_back ("Aire");
-	elemento.push_back ("Fuego");
-	elemento.push_back ("Tierra");
-	elemento.push_back ("Agua");
+	elemento.push_back ("Air");
+	elemento.push_back ("Fire");
+	elemento.push_back ("Earth");
+	elemento.push_back ("Water");
 }
 
 //Funcion que copia un elemento en concreto
@@ -142,8 +143,6 @@ void main() {
 		std::cout << "     " << i << "  " << elemento[i] << std::endl;
 	}
 
-
-	int posicion;
 	std::string player;
 	std::cin >> player;
 
@@ -176,7 +175,6 @@ void main() {
 		else if (player == "info") {
 			Info();
 		}
-
 		else {
 			std::cout << "I don't understand that buddy! Type help for help!"<<std::endl;
 		}
