@@ -145,8 +145,8 @@ void main() {
 		}*/
 
 		std::cout << "You have those elements :" << std::endl;
-		for (std::vector<std::string>::iterator it = elemento.begin(); it != elemento.end(); ++it) {
-			std::cout <<"  "<<*it << std::endl;
+		for (int i = 0; i <= elemento.size()-1; i++){
+			std::cout <<"   "<<i << " " << elemento[i] << std::endl;
 		}
 		std::cin >> player;
 	}
