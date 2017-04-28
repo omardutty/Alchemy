@@ -84,9 +84,15 @@ void main() {
 	std::cout << "- Enter 'clean' to delete all the instances of repeated elements" << std::endl;
 	std::cout << "- Enter 'help' to show a tutorial" << std::endl;
 	std::cout << " " << std::endl;
+	//Printear puntuacion
 
 	//std::cout << "Your current score :" << puntuacion << std::endl;
 	
+	// Printear los basics al inicio del juego
+	AddBasics();
+	for (int i = 0; i < 4; i++) {
+		std::cout << i + 1 << ") " << elemento[i] << std::endl;
+	}
 
 	std::ifstream archivo ("elements.dat");
 	std::string line;
@@ -114,7 +120,11 @@ void main() {
 	std::string player;
 	std::cin >> player;
 	//std::cin >> posicion; //Les complexes es millor fer en un gran if amb substrings que separen entre el numero y la funcion
-	
+	std::pair<int, int>combination;
+	int a, b;
+	//std::cin >> a >> b;	BUG por el cin porque lo estamos haciendo abajo del main
+	combinacion = (a, b);
+
 	while (player != "endgame")
 	{
 
@@ -130,7 +140,9 @@ void main() {
 		else if (player == "clean") {
 			Clean();
 		}
-		else if (player != "addbasics" && player != "help" && player != "sort" && player != "clean" && player != "endgame" && player != "add" && player != "delete" && player != "info"){
+		//else if (Dos numeros introducidos por el usuario){}
+
+		else {
 			std::cout << "I don't understand that buddy! Type help for help!"<<std::endl;
 		}
 
