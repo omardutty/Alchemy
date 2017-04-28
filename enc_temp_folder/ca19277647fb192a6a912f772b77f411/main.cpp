@@ -39,18 +39,18 @@ void lecturadelfichero() {
 	}*/
 }
 
-
+/*
 std::string Combination(std::string comb1, std::string comb2) {
 	std::pair<std::string, std::string> combinacion = std::make_pair(comb1, comb2);
 	if (true)
 	{
-		
+
 	}
 	else
 	{
-		//return std::cout << " No existe la combinacion " << std::endl;
+
 	}
-}
+}*/
 
 //Le da los elementos basicos al player
 void AddBasics() {
