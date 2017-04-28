@@ -50,7 +50,7 @@ void Sort() {
 	std::sort(elemento.begin(), elemento.end());
 }
 
-//Funcion del clean
+//Funcion del clean problema solo borra cuando estan ordenados alfabeticamente
 void Clean() {
 	elemento.erase(std::unique(elemento.begin(), elemento.end()), elemento.end());
 }
@@ -69,9 +69,11 @@ void Help() {
 
 void main() {
 	
-	std::cout << "-------------------------------" << std::endl;
-	std::cout << "       FULLENTI ALCHEMIST      " << std::endl;
-	std::cout << "-------------------------------" << std::endl;
+	std::cout << "-------------------------------------------------" << std::endl;
+	std::cout << "                FULLENTI ALCHEMIST               " << std::endl;
+	std::cout << "-------------------------------------------------" << std::endl;
+	std::cout << std::endl;
+	std::cout << "Made by: Oscar Espejo Sagues && Omar Gil Sturlese" << std::endl;
 	std::cout << " " << std::endl;
 	std::cout << "- Enter two numbers of your element list to combine them" << std::endl;
 	std::cout << "- Enter the word 'add' and the number of a element to add a new instance of that element" << std::endl;
@@ -111,7 +113,7 @@ void main() {
 	int posicion;
 	std::string player;
 	std::cin >> player;
-	//std::cin >> posicion; Les complexes es millor fer en un gran if amb substrings que separen entre el numero y la funcion
+	//std::cin >> posicion; //Les complexes es millor fer en un gran if amb substrings que separen entre el numero y la funcion
 	
 	while (player != "endgame")
 	{
@@ -128,7 +130,7 @@ void main() {
 		else if (player == "clean") {
 			Clean();
 		}
-		else if (player != "addbasics" && player != "help" && player != "sort" && player != "clean" && player != "endgame"){
+		else if (player != "addbasics" && player != "help" && player != "sort" && player != "clean" && player != "endgame" && player != "add" && player != "delete" && player != "info"){
 			std::cout << "I don't understand that buddy! Type help for help!"<<std::endl;
 		}
 
@@ -146,7 +148,7 @@ void main() {
 
 		std::cout << "You have those elements :" << std::endl;
 		for (int i = 0; i <= elemento.size()-1; i++){
-			std::cout <<"   "<<i << " " << elemento[i] << std::endl;
+			std::cout <<"     "<< i << " " << elemento[i] << std::endl;
 		}
 		std::cin >> player;
 	}
