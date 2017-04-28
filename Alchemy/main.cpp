@@ -10,7 +10,7 @@
 //Vector de strings global
 std::vector<std::string> elemento;
 //Mapa de los elementos
-std::unordered_map<std::string, std::string, std::string>mapa;
+std::unordered_map<std::string, std::string>mapa;
 
 void Combinacion() {
 
