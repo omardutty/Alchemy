@@ -8,10 +8,11 @@
 #include "HeaderMap.h"
 
 
+
 //Vector de strings global
 std::vector<std::string> elemento;
-//Mapa de los elementos
-std::unordered_map<std::string, std::string> mapa;
+//Mapa de los elementos, lo he vuelto a modificar para que entren pairs
+std::unordered_map<std::pair<std::string, std::string>,std::string> mapa;
 //Puntuacion del player
 int puntuacionplayer = 0;
 
@@ -20,18 +21,24 @@ int puntuacionplayer = 0;
 void lecturadelfichero() {
 	std::ifstream archivo("elements.dat");
 	std::string line;
-	std::string keydelelemento;
-	std::string combinacion;
-	int separacion;
+	std::string elemento1; //aqui guardaremos el primer elemento
+	std::string elemento2; //aqui guardaremos el segundo elemento
+	std::string combinacion; //aqui la combinacion de ambos
+
+	//http://www.cplusplus.com/reference/algorithm/find/
+	int igual = line.find('='); //tiene que ser int ja que find devuelve una posicion
+	int suma = line.find('+');
 
 	//Uso el getline para cojer desde el archivo cada linia
 	while (getline(archivo, line)) {
-		//Separacion va desde el caracter 0 al =          primer caracter = 0
-		separacion = line.find(" = ", 0);
-		combinacion = line.substr(0, separacion);
-		keydelelemento = line.substr(separacion + 3);
+		//Separacion va desde el caracter 0 al =
+		combinacion = line.substr(0, igual);
+		//Primer elemento desde el igual hasta la suma
+		elemento1 = line.substr(igual, suma);
+		//Segundo elemento desde la suma hasta el tamaño de la linia
+		elemento2 = line.substr(suma, line.size());
 		//Insertamos en el mapa la lectura del fichero
-		mapa.insert({ keydelelemento, combinacion });
+		mapa.insert({ {elemento1 , elemento2}, combinacion });
 	}
 	archivo.close();
 
@@ -44,7 +51,15 @@ void lecturadelfichero() {
 
 void GetCombo(std::string ele1, std::string ele2) {
 	std::pair<std::string, std::string> combo(ele1, ele2);
+	
+	if (mapa.find(combo) != mapa.end())
+	{
 
+	}
+	else
+	{
+
+	}
 
 }
 
@@ -93,8 +108,7 @@ void Clean() {
 	std::sort(elemento.begin(), elemento.end());
 	elemento.erase(std::unique(elemento.begin(), elemento.end()), elemento.end());
 
-	/*
-	std::string element1;
+	/*std::string element1;
 	std::string element2;
 	for (int i = 0; i < elemento.size()-1; i++) {
 		for (int j = i - 1; j < elemento.size()-1; j++) {
@@ -108,7 +122,7 @@ void Clean() {
 }
 
 
-/*void Combinacion() {
+void Combinacion() {
 	int pos1, pos2;
 	std::cin >> pos1;
 	std::cin >> pos2;
@@ -118,11 +132,9 @@ void Clean() {
 
 	std::pair<std::string, std::string> elementosusuario(primero, segundo);
 
-	if (keydelelemento == elementosusuario){
 	
-	}
 	
-}*/
+}
 
 //Funcion de Help para el player
 void Help() {
