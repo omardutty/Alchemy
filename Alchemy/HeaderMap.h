@@ -7,7 +7,7 @@
 #include<algorithm>
 #include<Windows.h>
 
-template<>
+/*template<>
 
 //Hash creada a partir del ejemplo del pdf de unordered_map
 struct std::hash<std::pair<std::string, std::string>>
@@ -16,4 +16,4 @@ struct std::hash<std::pair<std::string, std::string>>
 		return((std::hash<std::string>()(a.first)
 			^ (std::hash<std::string>()(a.second) << 1)) >> 1);
 	}
-};
+};*/
