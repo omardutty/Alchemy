@@ -5,6 +5,9 @@
 #include<fstream>
 #include<algorithm>
 #include<Windows.h>
+#include "HeaderMap.h"
+
+
 
 
 //Vector de strings global
@@ -15,32 +18,41 @@ std::unordered_map<std::string, std::string> mapa;
 int puntuacionplayer = 0;
 
 
+
+
 template<>
 
 //Hash creada a partir del ejemplo del pdf de unordered_map
-struct std::hash<std::pair<std::string, std::string>> {
+struct HashPair  
+    {
 	size_t operator()(std::pair<std::string, std::string> &a) const {
-		return((std::hash<std::string>()(a.first) 
+		return((std::hash<std::string>()(a.first)
 			^ (std::hash<std::string>()(a.second) << 1)) >> 1);
 	}
 };
 
+
+
 void lecturadelfichero() {
 	std::ifstream archivo("elements.dat");
-	std::string line;
-	std::string keydelelemento;
-	std::string combinacion;
 
-	int separacion;
+	//comprobamos que el fichero este abierto
+	if (archivo.is_open()){
+		std::string line;
+		std::string keydelelemento;
+		std::string combinacion;
 
-	//Uso el getline para cojer desde el archivo cada linia
-	while (getline(archivo, line)) {
-		//Separacion va desde el caracter 0 al =          primer caracter = 0
-		separacion = line.find(" = ", 0);
-		combinacion = line.substr(0, separacion);
-		keydelelemento = line.substr(separacion + 3);
-		//Insertamos en el mapa la lectura del fichero
-		mapa.insert({ keydelelemento, combinacion });
+		int separacion;
+
+		//Uso el getline para cojer desde el archivo cada linia
+		while (getline(archivo, line)) {
+			//Separacion va desde el caracter 0 al =          primer caracter = 0
+			separacion = line.find(" = ", 0);
+			combinacion = line.substr(0, separacion);
+			keydelelemento = line.substr(separacion + 3);
+			//Insertamos en el mapa la lectura del fichero
+			mapa.insert({ keydelelemento, combinacion });
+		}
 	}
 	archivo.close();
 
@@ -52,18 +64,18 @@ void lecturadelfichero() {
 
 
 
-/*std::string Combination(std::string comb1, std::string comb2) {
+std::string Combination(std::string comb1, std::string comb2, HashPair) {
 	std::pair<std::string, std::string> combinacion = std::make_pair(comb1, comb2);
-	if (mapa.find(combinacion))
+	if (mapa.find(combinacion) != mapa.end())
 	{
-
+		return mapa.find(combinacion)->first;
 	}
 	
 	else
 	{
 		//no existe tiene que devolver el cout 
 	}
-}*/
+}
 
 
 //Le da los elementos basicos al player
@@ -109,10 +121,23 @@ void Sort() {
 void Clean() {
 	std::sort(elemento.begin(), elemento.end());
 	elemento.erase(std::unique(elemento.begin(), elemento.end()), elemento.end());
+
+	/*
+	std::string element1;
+	std::string element2;
+	for (int i = 0; i < elemento.size()-1; i++) {
+		for (int j = i - 1; j < elemento.size()-1; j++) {
+			element1 = elemento[i];
+			element2 = elemento[j];
+			if (element2.compare(element1)) {
+				elemento.erase(elemento.begin() + i);
+			}
+		}
+	}*/
 }
 
-/*
-void Combinacion() {
+
+/*void Combinacion() {
 	int pos1, pos2;
 	std::cin >> pos1;
 	std::cin >> pos2;
@@ -122,7 +147,7 @@ void Combinacion() {
 
 	std::pair<std::string, std::string> elementosusuario(primero, segundo);
 
-	/*if (keydelelemento == elementosusuario){
+	if (keydelelemento == elementosusuario){
 	
 	}
 	
