@@ -14,9 +14,13 @@ std::unordered_map<std::string, std::string> mapa;
 //Puntuacion del player
 int puntuacionplayer = 0;
 
-struct HashPairs{
+
+template<>
+
+//Hash creada a partir del ejemplo del pdf de unordered_map
+struct std::hash<std::pair<std::string, std::string>> {
 	size_t operator()(std::pair<std::string, std::string> &a) const {
-		return((std::hash<std::string>()(a.first)
+		return((std::hash<std::string>()(a.first) 
 			^ (std::hash<std::string>()(a.second) << 1)) >> 1);
 	}
 };
@@ -42,17 +46,19 @@ void lecturadelfichero() {
 
 	/*//For que pemite imprimir el documento de elementos
 	for (auto it = mapa.begin(); it != mapa.end(); ++it){
-	std::cout << " " << it->first << " : " << it->second << std::endl;
+	std::cout << " " << it->second << " : " << it->first << std::endl;
 	}*/
 }
 
+
+
 /*std::string Combination(std::string comb1, std::string comb2) {
 	std::pair<std::string, std::string> combinacion = std::make_pair(comb1, comb2);
-
-	if (mapa.find (combinacion) != mapa.end())
+	if (mapa.find(combinacion))
 	{
-		
+
 	}
+	
 	else
 	{
 		//no existe tiene que devolver el cout 
@@ -63,8 +69,8 @@ void lecturadelfichero() {
 //Le da los elementos basicos al player
 void AddBasics() {
 	elemento.push_back ("Air");
-	elemento.push_back ("Fire");
 	elemento.push_back ("Earth");
+	elemento.push_back ("Fire");
 	elemento.push_back ("Water");
 }
 
@@ -101,9 +107,11 @@ void Sort() {
 
 //Funcion del clean problema solo borra cuando estan ordenados alfabeticamente
 void Clean() {
+	std::sort(elemento.begin(), elemento.end());
 	elemento.erase(std::unique(elemento.begin(), elemento.end()), elemento.end());
 }
 
+/*
 void Combinacion() {
 	int pos1, pos2;
 	std::cin >> pos1;
@@ -116,9 +124,9 @@ void Combinacion() {
 
 	/*if (keydelelemento == elementosusuario){
 	
-	}*/
+	}
 	
-}
+}*/
 
 //Funcion de Help para el player
 void Help() {
