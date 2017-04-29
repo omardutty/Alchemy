@@ -14,12 +14,19 @@ std::unordered_map<std::string, std::string> mapa;
 //Puntuacion del player
 int puntuacionplayer = 0;
 
-std::string keydelelemento;
-std::string combinacion;
+struct HashPairs{
+	size_t operator()(std::pair<std::string, std::string> &a) const {
+		return((std::hash<std::string>()(a.first)
+			^ (std::hash<std::string>()(a.second) << 1)) >> 1);
+	}
+};
 
 void lecturadelfichero() {
 	std::ifstream archivo("elements.dat");
 	std::string line;
+	std::string keydelelemento;
+	std::string combinacion;
+
 	int separacion;
 
 	//Uso el getline para cojer desde el archivo cada linia
@@ -190,7 +197,7 @@ void main() {
 		else {
 			std::cout << "I don't understand that buddy! Type help for help!"<<std::endl;
 		}
-		Combinacion();
+		
 		std::cout << "You have those elements :" << std::endl;
 		for (int i = 0; i <= elemento.size()-1; i++){
 			std::cout <<"     "<< i << "  " << elemento[i] << std::endl;
