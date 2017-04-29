@@ -10,41 +10,36 @@
 
 //Vector de strings global
 std::vector<std::string> elemento;
-//Mapa de los elementos: modificado para que acepte pairs 
-std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
+//Mapa de los elementos
+std::unordered_map<std::string, std::string> mapa;
 //Puntuacion del player
 int puntuacionplayer = 0;
 
 
-void lecturadelfichero() {
-	//Abrimos el fichero
-	std::ifstream archivo("elements.dat");
 
-	//comprobamos que el fichero este abierto
-	if (archivo.is_open()){
-		std::string line;
-		std::string elemento1;
-		std::string elemento2;
-		std::string combinacion;
-      
-		//Uso el getline para cojer desde el archivo cada linia
-		while (getline(archivo, line)) {
-			//Separacion va desde el caracter 0
-			combinacion = line.substr(0, '=');
-			elemento1 = line.substr('=', '+');
-			elemento2 = line.substr('+', line.end);
-			//Insertamos en el mapa la lectura del fichero
-			mapa.insert({ {elemento1, elemento2 } , combinacion });
-		}
+void lecturadelfichero() {
+	std::ifstream archivo("elements.dat");
+	std::string line;
+	std::string keydelelemento;
+	std::string combinacion;
+	int separacion;
+
+	//Uso el getline para cojer desde el archivo cada linia
+	while (getline(archivo, line)) {
+		//Separacion va desde el caracter 0 al =          primer caracter = 0
+		separacion = line.find(" = ", 0);
+		combinacion = line.substr(0, separacion);
+		keydelelemento = line.substr(separacion + 3);
+		//Insertamos en el mapa la lectura del fichero
+		mapa.insert({ keydelelemento, combinacion });
 	}
 	archivo.close();
 
-	//For que pemite imprimir el documento de elementos
+	/*//For que pemite imprimir el documento de elementos
 	for (auto it = mapa.begin(); it != mapa.end(); ++it){
-	std::cout << " " << it->second<< " : " << std::endl;
-	}
+	std::cout << " " << it->first << " : " << it->second << std::endl;
+	}*/
 }
-
 
 
 void GetCombo(std::string ele1, std::string ele2) {
