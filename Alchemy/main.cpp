@@ -14,12 +14,12 @@ std::unordered_map<std::string, std::string> mapa;
 //Puntuacion del player
 int puntuacionplayer = 0;
 
+std::string keydelelemento;
+std::string combinacion;
 
 void lecturadelfichero() {
 	std::ifstream archivo("elements.dat");
 	std::string line;
-	std::string keydelelemento;
-	std::string combinacion;
 	int separacion;
 
 	//Uso el getline para cojer desde el archivo cada linia
@@ -39,16 +39,16 @@ void lecturadelfichero() {
 	}*/
 }
 
-/*
-std::string Combination(std::string comb1, std::string comb2) {
+/*std::string Combination(std::string comb1, std::string comb2) {
 	std::pair<std::string, std::string> combinacion = std::make_pair(comb1, comb2);
-	if ()
+
+	if (mapa.find (combinacion) != mapa.end())
 	{
 		
 	}
 	else
 	{
-		//return std::cout << "No existe la combinacion" << std::endl;
+		//no existe tiene que devolver el cout 
 	}
 }*/
 
@@ -95,6 +95,22 @@ void Sort() {
 //Funcion del clean problema solo borra cuando estan ordenados alfabeticamente
 void Clean() {
 	elemento.erase(std::unique(elemento.begin(), elemento.end()), elemento.end());
+}
+
+void Combinacion() {
+	int pos1, pos2;
+	std::cin >> pos1;
+	std::cin >> pos2;
+	
+	std::string primero = elemento[pos1];
+	std::string segundo = elemento[pos2];
+
+	std::pair<std::string, std::string> elementosusuario(primero, segundo);
+
+	/*if (keydelelemento == elementosusuario){
+	
+	}*/
+	
 }
 
 //Funcion de Help para el player
@@ -145,13 +161,7 @@ void main() {
 
 	std::string player;
 	std::cin >> player;
-	std::cin.clear();
 
-	//std::cin >> posicion; //Les complexes es millor fer en un gran if amb substrings que separen entre el numero y la funcion
-	/*std::pair<int, int>combination;
-	int a, b;
-	//std::cin >> a >> b;	BUG por el cin porque lo estamos haciendo abajo del main
-	combinacion = (a, b);*/
 
 	while (player != "endgame")
 	{
@@ -176,10 +186,11 @@ void main() {
 		else if (player == "info") {
 			Info();
 		}
+	
 		else {
 			std::cout << "I don't understand that buddy! Type help for help!"<<std::endl;
 		}
-
+		Combinacion();
 		std::cout << "You have those elements :" << std::endl;
 		for (int i = 0; i <= elemento.size()-1; i++){
 			std::cout <<"     "<< i << "  " << elemento[i] << std::endl;
