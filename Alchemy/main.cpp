@@ -166,9 +166,12 @@ void main() {
 
 	while (puntuacionplayer != 100)
 	{
-		if (player == "addbasics") {
+		if (player == "addbasics" || player == "add") {
 			AddBasics();
 		}
+		/*else if (player == "add") {
+				AddBasics();
+		}*/
 		else if (player == "help") {
 			Help();
 		}
