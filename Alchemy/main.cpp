@@ -9,7 +9,7 @@
 
 
 //Vector de strings global
-std::vector<std::string> elemento;
+std::vector<std::string> elemento({"Air", "Earth", "Fire", "Water"});
 //Mapa de los elementos, lo he vuelto a modificar para que entren pairs
 //std::unordered_map<std::pair<std::string, std::string>,std::string> mapa;
 //Puntuacion del player
@@ -26,7 +26,7 @@ void lecturadelfichero() {
 		std::string elemento2; //aqui guardaremos el segundo elemento
 		std::string combinacion; //aqui la combinacion de ambos
 
-								 //http://www.cplusplus.com/reference/algorithm/find/
+		//http://www.cplusplus.com/reference/algorithm/find/
 		int igual = line.find('='); //tiene que ser int ja que find devuelve una posicion
 		int suma = line.find('+');
 
@@ -46,6 +46,7 @@ void lecturadelfichero() {
 	else
 	{
 		std::cout << "La carga del archivo ha fracasado" << std::endl;
+		system("pause");
 	}
 
 	archivo.close();
@@ -55,9 +56,6 @@ void lecturadelfichero() {
 	std::cout << " " << it->first << " : " << it->second << std::endl;
 	}
 }*/
-
-
-
 
 //Le da los elementos basicos al player
 void AddBasics() {
@@ -72,7 +70,7 @@ void Add() {
 	int posicion;
 	std::cin >> posicion;
 	std::string adder;
-	adder = elemento[posicion];
+	adder = elemento[posicion];//guardamos el elemento que queremos y posteriormente hacemos un push_back de este
 	elemento.push_back(adder);
 }
 
@@ -102,21 +100,7 @@ void Sort() {
 void Clean() {
 	std::sort(elemento.begin(), elemento.end());
 	elemento.erase(std::unique(elemento.begin(), elemento.end()), elemento.end());
-
-	/*std::string element1;
-	std::string element2;
-	for (int i = 0; i < elemento.size()-1; i++) {
-		for (int j = i - 1; j < elemento.size()-1; j++) {
-			element1 = elemento[i];
-			element2 = elemento[j];
-			if (element2.compare(element1)) {
-				elemento.erase(elemento.begin() + i);
-			}
-		}
-	}*/
 }
-
-
 
 
 //Funcion de Help para el player
@@ -135,11 +119,7 @@ void Help() {
 	std::cout << std::endl;
 }
 
-
-
-void main() {
-	//lecturadelfichero();
-
+void gamemenu() {
 	std::cout << "-------------------------------------------------" << std::endl;
 	std::cout << "                FULLENTI ALCHEMIST               " << std::endl;
 	std::cout << "-------------------------------------------------" << std::endl;
@@ -155,20 +135,11 @@ void main() {
 	std::cout << "- Enter 'clean' to delete all the instances of repeated elements" << std::endl;
 	std::cout << "- Enter 'help' to show a tutorial" << std::endl;
 	std::cout << " " << std::endl;
+}
 
-	std::cout << "Your current score :" << puntuacionplayer << std::endl;
-	
-	// Printear los basics al inicio del juego
-	AddBasics();
-	std::cout << "You have those elements :" << std::endl;
-	for (int i = 0; i < 4; i++) {
-		std::cout << "     " << i << "  " << elemento[i] << std::endl;
-	}
-
-	std::string player;
-	std::cin >> player;
-
-
+//Funcion que controla el curso del juego, las funciones
+void ingame(std::string player) {
+	//Funcion endgame provisional hasta que controlemos la puntuacion del player
 	while (player != "endgame")
 	{
 		if (player == "addbasics") {
@@ -192,16 +163,37 @@ void main() {
 		else if (player == "info") {
 			Info();
 		}
-	
+
 		else {
-			std::cout << "I don't understand that buddy! Type help for help!"<<std::endl;
+			std::cout << "I don't understand that buddy! Type help for help!" << std::endl;
 		}
-		
+
 		std::cout << "You have those elements :" << std::endl;
-		for (int i = 0; i <= elemento.size()-1; i++){
-			std::cout <<"     "<< i << "  " << elemento[i] << std::endl;
+		for (int i = 0; i <= elemento.size() - 1; i++) {
+			std::cout << "     " << i << "  " << elemento[i] << std::endl;
 		}
 		std::cin >> player;
 		system("cls");
 	}
+}
+
+
+
+void main() {
+	//lecturadelfichero();
+	gamemenu();
+
+	// Printear los basics al inicio del juego
+	std::cout << "Your current score :" << puntuacionplayer << std::endl;
+	std::cout << "You have those elements :" << std::endl;
+
+		for (int i = 0; i < elemento.size(); i++) {
+		std::cout << "     " << i << "  " << elemento[i] << std::endl;
+		}
+
+	std::string player;
+	std::cin >> player;
+	std::cin.clear();
+	std::cin.ignore(std::cin.rdbuf()->in_avail());
+	ingame(player); //llamamos a la funcion que controla el curso del juego 
 }
