@@ -28,7 +28,8 @@ void lecturadelfichero() {
 
 	while (!archivo.eof()) {							   //mientras no llegue al final del archivo
 		std::getline(archivo, texto);                      //cojemos toda la linia i la guardamos como un string --> http://www.cplusplus.com/reference/string/string/getline/
-		int j, i = 0;										   
+		int j = 0;
+        int i = 0;										   
 		while (i < texto.length() && j == 0) {             //mientras i sea mas pequeño que el tamaño del texto y j sea 0 
 			if (texto[i] == '=') j = i;                    //separamos la key que seria "Lava" de la suma de los elementos "Earth + Fire"
 			++i;
