@@ -162,6 +162,7 @@ void main() {
 		std::cout << "     " << i << "  " << elemento[i] << std::endl;
 	    }
 	std::string player;
+	std::string cadena;
 	std::cin >> player;
 
 	while (puntuacionplayer != 100)
@@ -190,19 +191,27 @@ void main() {
 		else if (player == "info") {
 			Info();
 		}
-		else if (player == "comb") {
+		else if (player == cadena) {
 			Combinacion();
 		}
 
 		else {
+			std::cin >> cadena;
+
+			if (/*std::stoi(player) && std::stoi(cadena)*/) {	//Combierte el string en un numero
+				//No se como indicarle el primero mas el segundo
+				Combinacion();
+			}
+			else {
 			std::cout << "I don't understand that buddy! Type help for help!" << std::endl;
+			}
 		}
-				std::cout << "Your current score : " << puntuacionplayer << std::endl;
-				std::cout << "You have those elements :" << std::endl;
-				for (int i = 1; i <= elemento.size() - 1; i++) {			// Empezamos a imprimir por el 1
-					std::cout << "     " << i << "  " << elemento[i] << std::endl;
-					}
-		std::cin >> player;
-		system("cls");
+			std::cout << "Your current score : " << puntuacionplayer << std::endl;
+			std::cout << "You have those elements :" << std::endl;
+			for (int i = 1; i <= elemento.size() - 1; i++) {			// Empezamos a imprimir por el 1
+				std::cout << "     " << i << "  " << elemento[i] << std::endl;
+			}
+			std::cin >> player;
+			system("cls");	
 	}
 }
