@@ -9,7 +9,7 @@
 
 
 //Vector de strings global
-std::vector<std::string> elemento({"Air", "Earth", "Fire", "Water"});
+std::vector<std::string> elemento({" ", "Air", "Earth", "Fire", "Water"}); // Posicion vacia para poder imprimir la tabla empezando por el 1
 //Mapa de los elementos, lo he vuelto a modificar para que entren pairs
 std::unordered_map<std::string, std::string> mapa;
 //Puntuacion del player
@@ -158,7 +158,7 @@ void main() {
 	gamemenu();
 	// Printear los basics al inicio del juego
 	std::cout << "You have those elements :" << std::endl;
-		for (int i = 0; i < elemento.size(); i++) {
+		for (int i = 1; i < elemento.size(); i++) {				// Empezamos a imprimir por el 1
 		std::cout << "     " << i << "  " << elemento[i] << std::endl;
 	    }
 	std::string player;
@@ -199,7 +199,7 @@ void main() {
 		}
 				std::cout << "Your current score : " << puntuacionplayer << std::endl;
 				std::cout << "You have those elements :" << std::endl;
-				for (int i = 0; i <= elemento.size() - 1; i++) {
+				for (int i = 1; i <= elemento.size() - 1; i++) {			// Empezamos a imprimir por el 1
 					std::cout << "     " << i << "  " << elemento[i] << std::endl;
 					}
 		std::cin >> player;
