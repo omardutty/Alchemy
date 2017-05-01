@@ -162,17 +162,14 @@ void main() {
 		std::cout << "     " << i << "  " << elemento[i] << std::endl;
 	    }
 	std::string player;
-	std::string cadena;
+	//std::string cadena;
 	std::cin >> player;
 
 	while (puntuacionplayer != 100)
 	{
-		if (player == "addbasics" || player == "add") {
+		if (player == "addbasics") {
 			AddBasics();
 		}
-		/*else if (player == "add") {
-				AddBasics();
-		}*/
 		else if (player == "help") {
 			Help();
 		}
@@ -191,20 +188,18 @@ void main() {
 		else if (player == "info") {
 			Info();
 		}
-		else if (player == cadena) {
+		else if (player == "comb") {
 			Combinacion();
 		}
 
 		else {
-			std::cin >> cadena;
+			//std::cin >> cadena;
 
-			if (/*std::stoi(player) && std::stoi(cadena)*/) {	//Combierte el string en un numero
+			/*if (/*std::stoi(player) && std::stoi(cadena)) {	//Combierte el string en un numero
 				//No se como indicarle el primero mas el segundo
 				Combinacion();
-			}
-			else {
+			}*/
 			std::cout << "I don't understand that buddy! Type help for help!" << std::endl;
-			}
 		}
 			std::cout << "Your current score : " << puntuacionplayer << std::endl;
 			std::cout << "You have those elements :" << std::endl;
