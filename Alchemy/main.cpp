@@ -6,16 +6,18 @@
 #include<algorithm>
 #include<Windows.h>
 #include<conio.h>
+#include <cstdlib>
 #include "HeaderMap.h"
 
 
 //Vector de strings global
 std::vector<std::string> elemento({ " ", "Air", "Earth", "Fire", "Water" }); // Posicion vacia para poder imprimir la tabla empezando por el 1
-																			 //Mapa de los elementos, lo he vuelto a modificar para que entren pairs
+std::vector<std::string> auxvector;										  //vector auxiliar que generamos para la funcion de control del player
+			            													  //Mapa de los elementos, lo he vuelto a modificar para que entren pairs
 std::unordered_map<std::string, std::string> mapa;
 //Puntuacion del player
 int puntuacionplayer = 0;
-
+void controldelplayer(std::string value);
 
 void lecturadelfichero() {
 	std::ifstream archivo;						           //inicializamos una variable de tipo ifstring
@@ -110,8 +112,14 @@ void Help() {
 	std::cout << "-If you type clean you will delete all repeteaded elements" << std::endl;
 }
 
-void Combinacion(int num1, int num2) {
 
+void Combinacion(int num1, int num2) {
+	if (num2 < num1) {														    //Funcion dew swapeo que hace que no de errores cuando el segundo es mas grande que el primero
+		int aux;
+		aux = num1;
+		num1 = num2;
+		num2 = aux;
+	}
 	std::string elemento1, elemento2;											//generamos los dos strings para almacenarlos
 	elemento1 = elemento[num1];													//asignamos el valor de la posicion del vector cogiendo el elemento que necesitamos
 	elemento2 = elemento[num2];
@@ -123,20 +131,36 @@ void Combinacion(int num1, int num2) {
 	iterador = mapa.find(comb);													//buscamos la combinacion, si existe
 	if (iterador != mapa.end()) {												//si el iterador esta antes del fin del archivo existe si no, no
 
-		elemento.erase(elemento.begin() + num1);								//borramos los elementos combinados
 		elemento.erase(elemento.begin() + num2);
+		elemento.erase(elemento.begin() + num1);								//borramos los elementos combinados
 
-		std::string result = iterador->second;								    //second hace referencia a lo que hay al otro lado del igual en el archivo de lectura
+		std::string result = iterador->second;									//second hace referencia a lo que hay al otro lado del igual en el archivo de lectura
+		controldelplayer(result);
 		system("color 03");														//añadimos colores una vez acabe de fusionar 
 		std::cout << "Your new elements is : " << result << std::endl;
 		system("pause");
 		system("cls");
 		system("color 07");
 		elemento.push_back(result);												//pusheamos el nuevo elemento
-		puntuacionplayer++;														//aumentamos la puntuacion del player
+
 	}
 	else {
 		std::cout << "The combination have failed! I'm sorry!" << std::endl;
+	}
+}
+
+void controldelplayer(std::string value) {									//Funcion que sirve para "controlar al player" haciendo que cuando repita combinaciones no suba su puntuacion
+	bool combexiste = false;											
+	for (auto it = auxvector.begin(); it != auxvector.end(); it++)          
+	{
+		if (value == *it) {													//si el valor es igual a la posicion del iterador, cambiamos el boleano y le enviamos un mensaje 
+			std::cout << "You already have that element!" << std::endl; 
+			combexiste = true;
+		}
+	}
+	if (combexiste == false) {												//si la combinacion no existe le añadimos un punto y cambiamos el boleano
+		puntuacionplayer++;
+		auxvector.push_back(value);
 	}
 }
 
@@ -173,7 +197,7 @@ void main() {
 	std::string comando1;
 	std::string comando2;
 
-	std::getline(std::cin, player); //cogemos la linia que escribe el player
+	std::getline(std::cin, player); //cogemos la linia que escribe el player, equivale al cin
 	size_t pos = player.find_first_of(' ');
 	comando1 = player.substr(0, pos);
 	if (pos != std::string::npos) {
@@ -224,6 +248,10 @@ void main() {
 
 		else {
 			std::cout << "I don't understand that buddy! Type help for help!" << std::endl;
+		}
+		if (elemento.size() == 1){ //If que permet que si el player nomes te un element tingui els basics
+			std::cout << "You run out of elements, take this!" << std::endl;
+			AddBasics();
 		}
 
 		std::cout << "Your current score : " << puntuacionplayer << std::endl;
