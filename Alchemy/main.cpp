@@ -5,6 +5,7 @@
 #include<fstream>
 #include<algorithm>
 #include<Windows.h>
+#include<conio.h>
 #include "HeaderMap.h"
 
 
@@ -101,18 +102,12 @@ void Clean() {
 
 //Funcion de Help para el player
 void Help() {
-	std::cout << "If you type addbasics you will get the basics elements : Air, Water, Fire, Earth" << std::endl;
-	std::cout <<std::endl;
-	std::cout << "If you type add and you insert a number you will copy the element" << std::endl;
-	std::cout << std::endl;
-	std::cout << "If you type delete and you insert a number you will delete that element" << std::endl;
-	std::cout << std::endl;
-	std::cout << "If you type info and you insert a number you will get information from the internet" << std::endl;
-	std::cout << std::endl;
-	std::cout << "If you type sort you will order alphabetically your elements" << std::endl;
-	std::cout << std::endl;
-	std::cout << "If you type clean you will delete all repeteaded elements" << std::endl;
-	std::cout << std::endl;
+	std::cout << "-If you type add basic you will get the basics elements : Air, Water, Fire, Earth" << std::endl;
+	std::cout << "-If you type add and you insert a number you will copy the element" << std::endl;
+	std::cout << "-If you type delete and you insert a number you will delete that element" << std::endl;
+	std::cout << "-If you type info and you insert a number you will get information from the internet" << std::endl;
+	std::cout << "-If you type sort you will order alphabetically your elements" << std::endl;
+	std::cout << "-If you type clean you will delete all repeteaded elements" << std::endl;
 }
 
 void Combinacion(int num1, int num2) {														    
@@ -131,7 +126,11 @@ void Combinacion(int num1, int num2) {
 		elemento.erase(elemento.begin() + num2); 
 
 		std::string result = iterador->second;								    //second hace referencia a lo que hay al otro lado del igual en el archivo de lectura
+		system("color 06");														//añadimos colores una vez acabe de fusionar 
 		std::cout << "Your new elements is : " << result << std::endl;
+		system("pause");
+		system("cls");
+		system("color 07");
 		elemento.push_back(result);												//pusheamos el nuevo elemento
 		puntuacionplayer++;														//aumentamos la puntuacion del player
 	}
