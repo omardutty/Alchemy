@@ -162,9 +162,14 @@ void main() {
 		std::cout << "     " << i << "  " << elemento[i] << std::endl;
 	    }
 	std::string player;
+	std::string comando1;
+	std::string comando2;
 	//std::string cadena;
-	std::cin >> player;
+	//std::cin >> player;
+	getline(std::cin, player);
 
+	comando1 = player.substr(0, player.find_first_of(' '));
+	comando2 = player.substr(player.find_first_of(' '));
 	while (puntuacionplayer != 100)
 	{
 		if (player == "addbasics") {
