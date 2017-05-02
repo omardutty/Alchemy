@@ -241,7 +241,19 @@ void main() {
 				}
 			}
 			else {
-				Combinacion(std::atoi(comando1.c_str()), std::atoi(comando2.c_str())); //comversion a integer del string
+				if (elemento.size() == 2) { //If que permet que si el player nomes te un element y no dongui error
+					std::getline(std::cin, player);
+					size_t pos = player.find_first_of(' ');
+					comando1 = player.substr(0, pos);
+					if (pos != std::string::npos) {
+						comando2 = player.substr(pos);
+					}
+				}
+				else{
+					Combinacion(std::atoi(comando1.c_str()), std::atoi(comando2.c_str())); //comversion a integer del string
+				}
+				
+				
 			}
 
 		}
@@ -249,10 +261,7 @@ void main() {
 		else {
 			std::cout << "I don't understand that buddy! Type help for help!" << std::endl;
 		}
-		if (elemento.size() == 1){ //If que permet que si el player nomes te un element tingui els basics
-			std::cout << "You run out of elements, take this!" << std::endl;
-			AddBasics();
-		}
+		
 
 		std::cout << "Your current score : " << puntuacionplayer << std::endl;
 		std::cout << "You have those elements :" << std::endl;
