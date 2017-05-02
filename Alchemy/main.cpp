@@ -58,25 +58,40 @@ void AddBasics() {
 void Add() {
 	int posicion;
 	std::cin >> posicion;
-	std::string adder;
-	adder = elemento[posicion];							//guardamos el elemento que queremos y posteriormente hacemos un push_back de este
-	elemento.push_back(adder);
+	if (posicion > elemento.size()) {
+		std::cout << "Sorry but that element dosn't exist" << std::endl;
+	}
+	else{
+		std::string adder;
+		adder = elemento[posicion];							//guardamos el elemento que queremos y posteriormente hacemos un push_back de este
+		elemento.push_back(adder);
+	}
 }
 
 //Funcion que borra el elemento en concreto
 void Delete() {
 	int posicion;
 	std::cin >> posicion;
-	elemento.erase(elemento.begin() + posicion);
+	if (posicion > elemento.size()) {
+		std::cout << "Sorry but that element dosn't exist" << std::endl;
+	}
+	else{
+		elemento.erase(elemento.begin() + posicion);
+	}
 }
 
 //Funcion que busca en Wikipedia el elemento
 void Info() {
 	int posicion;
 	std::cin >> posicion;
-	std::string url;
-	url = "https://en.wikipedia.org/wiki/" + elemento[posicion];   //Union de los dos "strings", para poder buscar en wikipedia
-	ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+	if (posicion > elemento.size()) {
+		std::cout << "Sorry but that element dosn't exist" << std::endl;
+	}
+	else{
+		std::string url;
+		url = "https://en.wikipedia.org/wiki/" + elemento[posicion];   //Union de los dos "strings", para poder buscar en wikipedia
+		ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+	}
 }
 
 //Funcion que te sortea los elementos
@@ -166,10 +181,12 @@ void main() {
 	std::string comando2;
 	//std::string cadena;
 	//std::cin >> player;
-	getline(std::cin, player);
+	
+	if (true)//hacer que el player pedir si es una funcion simple como sort, help, clean solo pedir uno si es una mas compleja pedir otra con ifs
+	{
 
-	comando1 = player.substr(0, player.find_first_of(' '));
-	comando2 = player.substr(player.find_first_of(' '));
+	}
+
 	while (puntuacionplayer != 100)
 	{
 		if (player == "addbasics") {
