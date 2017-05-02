@@ -110,7 +110,8 @@ void Help() {
 	std::cout << "-If you type clean you will delete all repeteaded elements" << std::endl;
 }
 
-void Combinacion(int num1, int num2) {														    
+void Combinacion(int num1, int num2) {	
+	
 	std::string elemento1, elemento2;											//generamos los dos strings para almacenarlos
 	elemento1 = elemento[num1];													//asignamos el valor de la posicion del vector cogiendo el elemento que necesitamos
 	elemento2 = elemento[num2];
@@ -126,7 +127,7 @@ void Combinacion(int num1, int num2) {
 		elemento.erase(elemento.begin() + num2); 
 
 		std::string result = iterador->second;								    //second hace referencia a lo que hay al otro lado del igual en el archivo de lectura
-		system("color 06");														//añadimos colores una vez acabe de fusionar 
+		system("color 03");														//añadimos colores una vez acabe de fusionar 
 		std::cout << "Your new elements is : " << result << std::endl;
 		system("pause");
 		system("cls");
@@ -169,11 +170,10 @@ void main() {
 	}
 
 	std::string player;
-	std::string comando3;
 	std::string comando1;
 	std::string comando2;
 
-	std::getline(std::cin, player);
+	std::getline(std::cin, player); //cogemos la linia que escribe el player
 	size_t pos = player.find_first_of(' ');
 	comando1 = player.substr(0, pos);
 	if (pos != std::string::npos){
@@ -205,8 +205,21 @@ void main() {
 		else if (comando1 == "info") {
 			Info(std::atoi(comando2.c_str()));
 		}
+	
 		else if (std::atoi(comando1.c_str()) && std::atoi(comando2.c_str())){
-			Combinacion(std::atoi(comando1.c_str()), std::atoi(comando2.c_str())); //comversion a integer del string
+			if (std::atoi(comando1.c_str()) < 0 || std::atoi(comando1.c_str()) > elemento.size() || std::atoi(comando2.c_str()) < 0 || std::atoi(comando2.c_str()) > elemento.size() || (std::atoi(comando1.c_str()) == std::atoi(comando2.c_str()))){
+				std::cout << "Wrong Numbers, try others" << std::endl;
+				std::getline(std::cin, player);
+				size_t pos = player.find_first_of(' ');
+				comando1 = player.substr(0, pos);
+				if (pos != std::string::npos) {
+					comando2 = player.substr(pos);
+				}
+			}
+			else{
+				Combinacion(std::atoi(comando1.c_str()), std::atoi(comando2.c_str())); //comversion a integer del string
+			}
+			
 		}
 
 		else {
