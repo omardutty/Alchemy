@@ -207,7 +207,7 @@ void main() {
 			Info(std::atoi(comando2.c_str()));
 		}
 		else if (std::atoi(comando1.c_str()) && std::atoi(comando2.c_str())){
-			Combinacion(std::atoi(comando1.c_str()), std::atoi(comando2.c_str()));
+			Combinacion(std::atoi(comando1.c_str()), std::atoi(comando2.c_str())); //comversion a integer del string
 		}
 
 		else {
