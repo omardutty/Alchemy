@@ -55,9 +55,7 @@ void AddBasics() {
 }
 
 //Funcion que copia un elemento en concreto
-void Add() {
-	int posicion;
-	std::cin >> posicion;
+void Add(int posicion) {
 	if (posicion > elemento.size()) {
 		std::cout << "Sorry but that element dosn't exist" << std::endl;
 	}
@@ -69,9 +67,7 @@ void Add() {
 }
 
 //Funcion que borra el elemento en concreto
-void Delete() {
-	int posicion;
-	std::cin >> posicion;
+void Delete(int posicion) {
 	if (posicion > elemento.size()) {
 		std::cout << "Sorry but that element dosn't exist" << std::endl;
 	}
@@ -81,9 +77,7 @@ void Delete() {
 }
 
 //Funcion que busca en Wikipedia el elemento
-void Info() {
-	int posicion;
-	std::cin >> posicion;
+void Info(int posicion) {
 	if (posicion > elemento.size()) {
 		std::cout << "Sorry but that element dosn't exist" << std::endl;
 	}
@@ -113,7 +107,7 @@ void Help() {
 	std::cout << std::endl;
 	std::cout << "If you type delete and you insert a number you will delete that element" << std::endl;
 	std::cout << std::endl;
-	std::cout << "If you type info and you insert a number you will get information from the      internet" << std::endl;
+	std::cout << "If you type info and you insert a number you will get information from the internet" << std::endl;
 	std::cout << std::endl;
 	std::cout << "If you type sort you will order alphabetically your elements" << std::endl;
 	std::cout << std::endl;
@@ -121,9 +115,7 @@ void Help() {
 	std::cout << std::endl;
 }
 
-void Combinacion() {
-	int num1, num2;
-	std::cin >> num1 >> num2;												    //pedimos los dos numeros al player
+void Combinacion(int num1, int num2) {														    
 	std::string elemento1, elemento2;											//generamos los dos strings para almacenarlos
 	elemento1 = elemento[num1];													//asignamos el valor de la posicion del vector cogiendo el elemento que necesitamos
 	elemento2 = elemento[num2];
@@ -175,60 +167,63 @@ void main() {
 	std::cout << "You have those elements :" << std::endl;
 		for (int i = 1; i < elemento.size(); i++) {				// Empezamos a imprimir por el 1
 		std::cout << "     " << i << "  " << elemento[i] << std::endl;
-	    }
-	std::string player;
-	std::string comando1;
-	std::string comando2;
-	//std::string cadena;
-	//std::cin >> player;
-	
-	if (true)//hacer que el player pedir si es una funcion simple como sort, help, clean solo pedir uno si es una mas compleja pedir otra con ifs
-	{
-
 	}
 
+	std::string player;
+	std::string comando3;
+	std::string comando1;
+	std::string comando2;
+
+	std::getline(std::cin, player);
+	size_t pos = player.find_first_of(' ');
+	comando1 = player.substr(0, pos);
+	if (pos != std::string::npos){
+		comando2 = player.substr(pos);
+	}
+	//hacer que el player pedir si es una funcion simple como sort, help, clean solo pedir uno si es una mas compleja pedir otra con ifs
+	
 	while (puntuacionplayer != 100)
-	{
-		if (player == "addbasics") {
-			AddBasics();
-		}
-		else if (player == "help") {
+	{		
+		if (comando1 == "help") {
 			Help();
 		}
-		else if (player == "sort") {
+		else if (comando1 == "sort") {
 			Sort();
 		}
-		else if (player == "clean") {
+		else if (comando1 == "clean") {
 			Clean();
 		}
-		else if (player == "add") {
-			Add();
+		else if (comando1 == "add" && comando2 == " basics") {
+				AddBasics();
 		}
-		else if (player == "delete") {
-			Delete();
+		else if (comando1 == "add"){
+				Add(std::atoi(comando2.c_str()));
 		}
-		else if (player == "info") {
-			Info();
+		else if (comando1 == "delete") {
+			Delete(std::atoi(comando2.c_str()));
 		}
-		else if (player == "comb") {
-			Combinacion();
+		else if (comando1 == "info") {
+			Info(std::atoi(comando2.c_str()));
+		}
+		else if (std::atoi(comando1.c_str()) && std::atoi(comando2.c_str())){
+			Combinacion(std::atoi(comando1.c_str()), std::atoi(comando2.c_str()));
 		}
 
 		else {
-			//std::cin >> cadena;
-
-			/*if (/*std::stoi(player) && std::stoi(cadena)) {	//Combierte el string en un numero
-				//No se como indicarle el primero mas el segundo
-				Combinacion();
-			}*/
 			std::cout << "I don't understand that buddy! Type help for help!" << std::endl;
 		}
-			std::cout << "Your current score : " << puntuacionplayer << std::endl;
-			std::cout << "You have those elements :" << std::endl;
-			for (int i = 1; i <= elemento.size() - 1; i++) {			// Empezamos a imprimir por el 1
-				std::cout << "     " << i << "  " << elemento[i] << std::endl;
+			
+	std::cout << "Your current score : " << puntuacionplayer << std::endl;
+	std::cout << "You have those elements :" << std::endl;
+	for (int i = 1; i <= elemento.size() - 1; i++) {			// Empezamos a imprimir por el 1
+	std::cout << "     " << i << "  " << elemento[i] << std::endl;
+	}
+			std::getline(std::cin, player);
+			size_t pos = player.find_first_of(' ');
+			comando1 = player.substr(0, pos);
+			if (pos != std::string::npos) {
+			  comando2 = player.substr(pos);
 			}
-			std::cin >> player;
 			system("cls");	
 	}
 }
