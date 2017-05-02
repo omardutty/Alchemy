@@ -199,6 +199,7 @@ void main() {
 		else if (comando1 == "add"){
 				Add(std::atoi(comando2.c_str()));
 		}
+
 		else if (comando1 == "delete") {
 			Delete(std::atoi(comando2.c_str()));
 		}
