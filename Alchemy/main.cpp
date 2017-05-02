@@ -219,7 +219,7 @@ void main() {
 		else if (comando1 == "add" && comando2 == " basics") {
 			AddBasics();
 		}
-		else if (comando1 == "add") {
+		else if (comando1 == "add" && std::atoi(comando2.c_str())) {
 			Add(std::atoi(comando2.c_str()));
 		}
 
